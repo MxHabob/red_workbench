@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "domain",
+    "value": "example.test",
+    "source": "synthetic",
+    "notes": "Reserved example domain; not a real target."
+  }
+]

@@ -1,0 +1,4 @@
+excluded_domains: []
+excluded_ip_addresses: []
+excluded_networks: []
+third_party_policy: "Unverified and out of scope until ownership and written authorization are confirmed."

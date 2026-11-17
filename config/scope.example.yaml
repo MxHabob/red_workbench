@@ -1,0 +1,13 @@
+engagement:
+  name: demo-assessment
+  authorization_reference: "REPLACE-WITH-WRITTEN-AUTHORIZATION-ID"
+  owner: "Example operator"
+  start_date: "2026-01-01"
+  end_date: "2026-01-31"
+scope:
+  domains:
+    - example.test
+  ip_ranges: []
+  excluded_domains: []
+  excluded_ip_ranges: []
+notes: "Synthetic example. Replace only with an approved scope."
