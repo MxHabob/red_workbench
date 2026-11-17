@@ -94,10 +94,14 @@ pyproject.toml             dependencies and development-tool settings
 .editorconfig              shared editor defaults
 .gitignore                 generated/local files and target-data exclusions
 CONTRIBUTING.md            collaboration and pull-request workflow
+AGENTS.md                  shared agent instructions
+.github/copilot-instructions.md  Copilot-specific entry point
 ```
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for branch, review, and hosting-service
 recommendations for teams of any size.
+See [AGENTS.md](./AGENTS.md) for project scope, authorization, and data-handling
+rules for coding agents.
 
 Run the tests and focused lint checks with:
 
