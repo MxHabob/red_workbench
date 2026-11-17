@@ -1,0 +1,50 @@
+organization: FBSU
+primary_domain: fbsu.edu.sa
+domain_status: candidate
+ownership_and_authorization: unverified
+collection_mode: passive_local_file_organization_only
+domains:
+  - fbsu.edu.sa
+  - diplomas.fbsu.edu.sa
+  - students.fbsu.edu.sa
+  - assessments.fbsu.edu.sa
+  - graduate.fbsu.edu.sa
+  - ncaaa.fbsu.edu.sa
+  - csc.fbsu.edu.sa
+  - forms.fbsu.edu.sa
+  - elearning.fbsu.edu.sa
+  - dlms.fbsu.edu.sa
+sources:
+  - name: Censys
+    type: search_reference
+    url: https://platform.censys.io/search?q=fbsu.edu.sa
+    status: supplied_not_accessed
+public_metadata_references:
+  - url: https://fbsu.edu.sa/composer.json
+    status: supplied_not_checked
+  - url: https://fbsu.edu.sa/composer.lock
+    status: supplied_not_checked
+  - url: https://fbsu.edu.sa/graduate
+    status: supplied_not_checked
+  - url: https://fbsu.edu.sa/suggestions
+    status: supplied_not_checked
+  - url: https://elearning.fbsu.edu.sa/npm-shrinkwrap.json
+    status: supplied_not_checked
+  - url: https://elearning.fbsu.edu.sa/package.json
+    status: supplied_not_checked
+  - url: http://15.204.235.208/.well-known/
+    status: supplied_not_checked
+    note: "IP ownership and authorization are unknown; do not access."
+  - url: https://elearning.fbsu.edu.sa/security.txt
+    status: supplied_not_checked
+  - url: https://dlms.fbsu.edu.sa/
+    status: supplied_not_checked
+  - url: https://fbsu.edu.sa/vendor/composer/installed.json
+    status: supplied_not_checked
+  - url: https://fbsu.edu.sa/package-lock.json
+    status: supplied_not_checked
+policy:
+  new_subdomains: candidate_until_ownership_verified
+  third_party_services: exclude_until_owned_and_authorized
+  discovered_ip_addresses: never_auto_authorize
+  network_collection: disabled

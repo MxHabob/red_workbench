@@ -3,19 +3,18 @@ requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fbsu-intelligence"
+name = "redteam-workbench"
 version = "0.1.0"
-description = "A local-first, passive public-source asset-intelligence workspace."
+description = "A local-first workspace for organizing authorized security assessments."
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["typer>=0.12", "rich>=13.7", "pydantic>=2.6", "PyYAML>=6.0", "jsonschema>=4.21"]
+dependencies = ["typer>=0.12", "rich>=13.7", "pydantic>=2.6", "PyYAML>=6.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.4"]
 
 [project.scripts]
 rtw = "redteam.cli:app"
-fbsu-intel = "fbsu_intelligence.cli:app"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,11 +1,7 @@
-engagement:
-  name: FBSU Public-Source Asset Intelligence
-  organization: FBSU
-  primary_domain: fbsu.edu.sa
-  status: planning
-  authorization_reference: ""
-  collection_mode: passive_manual_import_only
 workspace_dir: ./workspace
-database_name: intelligence.sqlite3
-max_import_bytes: 10485760
-max_import_records: 10000
+database_name: engagement.sqlite3
+log_level: INFO
+scope_guard:
+  enabled: true
+  allow_private_ip_ranges: false
+  allow_localhost: false

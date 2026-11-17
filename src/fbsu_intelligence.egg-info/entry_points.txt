@@ -1,3 +1,0 @@
-[console_scripts]
-fbsu-intel = fbsu_intelligence.cli:app
-rtw = redteam.cli:app
