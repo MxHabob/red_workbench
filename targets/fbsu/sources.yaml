@@ -9,7 +9,9 @@ public_metadata_references:
   - url: https://fbsu.edu.sa/composer.lock
     status: supplied_not_checked
   - url: https://fbsu.edu.sa/graduate
-    status: supplied_not_checked
+    status: accessed_public_information
+    checked_at: 2026-11-17
+    note: "Public page content reviewed; no form submitted and no data collected."
   - url: https://fbsu.edu.sa/suggestions
     status: supplied_not_checked
   - url: https://elearning.fbsu.edu.sa/npm-shrinkwrap.json
@@ -27,3 +29,19 @@ public_metadata_references:
     status: supplied_not_checked
   - url: https://fbsu.edu.sa/package-lock.json
     status: supplied_not_checked
+public_institutional_references:
+  - name: Homepage presenting university identity
+    url: https://fbsu.edu.sa/
+    status: accessed_public_information
+    checked_at: 2026-11-17
+    note: "Reviewed public institutional description, displayed aggregate figures, and service labels."
+  - name: Published programs page
+    url: https://fbsu.edu.sa/programs/university_programs
+    status: accessed_public_information
+    checked_at: 2026-11-17
+    note: "Reviewed publicly listed colleges and programs."
+  - name: Accreditation announcement on university-branded page
+    url: https://www.fbsu.edu.sa/All/Custom/Pages/Fahad-Bin-Sultan-University-Achieves-Full-Institutional-Accreditation-from-the-NCAAA
+    status: accessed_public_information
+    checked_at: 2026-11-17
+    note: "University announcement only; not independently verified with the accrediting body."
