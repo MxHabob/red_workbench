@@ -1,7 +1,0 @@
-workspace_dir: ./workspace
-database_name: engagement.sqlite3
-log_level: INFO
-scope_guard:
-  enabled: true
-  allow_private_ip_ranges: false
-  allow_localhost: false

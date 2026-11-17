@@ -3,25 +3,23 @@ requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "redteam-workbench"
+name = "target-inventory-workspace"
 version = "0.1.0"
-description = "A local-first workspace for organizing authorized security assessments."
+description = "Per-target inventory files and passive local-data utilities."
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["typer>=0.12", "rich>=13.7", "pydantic>=2.6", "PyYAML>=6.0"]
+dependencies = ["PyYAML>=6.0"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.4"]
+dev = ["pytest>=8.0", "ruff>=0.4"]
 
-[project.scripts]
-rtw = "redteam.cli:app"
-
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools]
+packages = []
+py-modules = []
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
 testpaths = ["tests"]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100

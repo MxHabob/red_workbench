@@ -7,7 +7,7 @@ scanner, dashboard, or autonomous collection service.
 
 ## Safety boundary
 
-- Every FBSU domain in [targets/fbsu.yaml](./targets/fbsu.yaml) is a candidate.
+- Every FBSU domain in [targets/fbsu/target.yaml](./targets/fbsu/target.yaml) is a candidate.
   The list does not prove ownership or permission.
 - The scripts make no DNS, HTTP, TLS, or Censys API requests.
 - The IP-based `/.well-known/` reference is recorded but not accessed or
@@ -20,19 +20,26 @@ scanner, dashboard, or autonomous collection service.
 
 ## Target record
 
-`targets/fbsu.yaml` stores the supplied primary domain, candidate subdomains,
-Censys search reference, and public metadata URLs. Availability and content have
-not been checked. Add other organizations as separate target YAML files using
-the same shape; the scripts are not tied to FBSU.
+Each target has its own folder. For FBSU, `targets/fbsu/target.yaml` contains
+identity, candidate domains, and scope policy; `targets/fbsu/sources.yaml`
+contains source and metadata references. Availability and content have not been
+checked. Add another target as a sibling folder with the same two files; the
+scripts accept any target definition.
 
 ## Reusable scripts
 
-Python 3.11+ and PyYAML are required. The existing project dependency includes
-PyYAML; no new runtime packages or API credentials are needed.
+Python 3.11+ is required. PyYAML is the only runtime dependency; pytest and Ruff
+are development tools. No API credentials are needed.
+
+For a fresh environment, install the repository dependencies once:
 
 ```powershell
-python scripts\validate_targets.py --file targets\fbsu.yaml
-python scripts\normalize_censys_export.py --input .\censys-export.json --output .\workspace\fbsu\censys-normalized.json
+python -m pip install -e ".[dev]"
+```
+
+```powershell
+python scripts\validate_targets.py --file targets\fbsu\target.yaml
+python scripts\normalize_censys_export.py --target fbsu --input .\targets\fbsu\files\imports\censys-export.json --source-reference "https://platform.censys.io/search?q=fbsu.edu.sa"
 ```
 
 `validate_targets.py` checks domain syntax and duplicates only; it performs no
@@ -44,12 +51,25 @@ and writes normalized observations with source, timestamp, confidence, status,
 and a SHA-256 reference to the imported file. It does not preserve the raw export
 or use Censys credentials. Review ownership and authorization before acting on
 any imported IP or third-party relationship.
+The normalized output defaults to `targets\<target>\data\censys-normalized.json`;
+use `--output` only when you need a different location.
+Put operator-held input exports under `targets\<target>\files\imports\` if you
+choose to retain them; the normalizer reads them in place and does not copy them.
+Generated data, retained files, and reports are ignored by Git. These folders
+are created only when needed, so unused empty folders are not added.
 
 ## Layout
 
 ```text
 targets/
-  fbsu.yaml                 supplied FBSU candidate assets and public references
+  fbsu/
+    target.yaml             candidate assets and scope policy
+    sources.yaml            public-source references
+    files/
+      imports/               optional operator-held original files
+      evidence/              locally retained evidence, if authorized
+    data/                    normalized local datasets (generated)
+    reports/                 target-specific reports (generated)
 scripts/
   validate_targets.py       syntax and duplicate checks for any target file
   normalize_censys_export.py local, bounded JSON/CSV normalization

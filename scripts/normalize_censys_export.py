@@ -99,30 +99,43 @@ def valid_domain(value: str) -> bool:
     )
 
 
+def default_output_path(target: str) -> Path:
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", target):
+        raise ValueError("Target name must be a simple folder name.")
+    return Path("targets") / target / "data" / "censys-normalized.json"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Normalize an operator-supplied local Censys export; no API or target access."
     )
+    parser.add_argument("--target", required=True, help="Target folder name, e.g. fbsu.")
     parser.add_argument("--input", type=Path, required=True)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--output",
+        type=Path,
+        help="Optional output override; defaults to workspace/<target>/data/censys-normalized.json.",
+    )
     parser.add_argument(
         "--source-reference",
-        default="https://platform.censys.io/search?q=fbsu.edu.sa",
-        help="Original source/search reference; customize for exports from other domains.",
+        required=True,
+        help="Original source/search reference for the imported export.",
     )
     args = parser.parse_args()
     try:
+        default_path = default_output_path(args.target)
+        output_path = args.output or default_path
         records = load_records(args.input)
         digest = hashlib.sha256(args.input.read_bytes()).hexdigest()
         observations = normalize_records(records, args.source_reference, digest)
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(
             json.dumps({"observations": observations}, indent=2, ensure_ascii=False),
             encoding="utf-8",
         )
     except (OSError, ValueError, UnicodeError, json.JSONDecodeError) as exc:
         parser.error(str(exc))
-    print(f"Wrote {len(observations)} normalized record(s) to {args.output}")
+    print(f"Wrote {len(observations)} normalized record(s) to {output_path}")
     print("Imported IP addresses remain requires_authorization; no scope was changed.")
     return 0
 

@@ -3,8 +3,12 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.py[cod]
-.env
-workspace/
-*.sqlite3
-*.db
-.DS_Store
+*.egg-info/
+targets/*/data/*
+!targets/*/data/.gitkeep
+targets/*/reports/*
+!targets/*/reports/.gitkeep
+targets/*/files/imports/*
+!targets/*/files/imports/.gitkeep
+targets/*/files/evidence/*
+!targets/*/files/evidence/.gitkeep

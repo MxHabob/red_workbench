@@ -33,7 +33,9 @@ def validate_target_data(data: dict) -> list[str]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Syntax-check a local target YAML file; no network access.")
+    parser = argparse.ArgumentParser(
+        description="Syntax-check a local target definition; no network access."
+    )
     parser.add_argument("--file", type=Path, required=True)
     args = parser.parse_args()
     try:

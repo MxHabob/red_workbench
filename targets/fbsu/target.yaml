@@ -1,0 +1,21 @@
+organization: FBSU
+primary_domain: fbsu.edu.sa
+status: candidate
+ownership_and_authorization: unverified
+domains:
+  - fbsu.edu.sa
+  - diplomas.fbsu.edu.sa
+  - students.fbsu.edu.sa
+  - assessments.fbsu.edu.sa
+  - graduate.fbsu.edu.sa
+  - ncaaa.fbsu.edu.sa
+  - csc.fbsu.edu.sa
+  - forms.fbsu.edu.sa
+  - elearning.fbsu.edu.sa
+  - dlms.fbsu.edu.sa
+policy:
+  collection: passive_local_files_only
+  new_subdomains: candidate_until_ownership_verified
+  third_party_services: exclude_until_owned_and_authorized
+  discovered_ip_addresses: never_auto_authorize
+  network_collection: disabled
