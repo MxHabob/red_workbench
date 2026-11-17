@@ -1,0 +1,11 @@
+organization: FBSU
+primary_domain: forms.fbsu.edu.sa
+status: candidate
+ownership_and_authorization: verified
+endpoints:
+  Authentication:
+    - https://forms.fbsu.edu.sa/v1/clos-fixed/api/login
+  user:  
+    - https://forms.fbsu.edu.sa/v1/clos-fixed/api/user-info
+
+
