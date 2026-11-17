@@ -7,8 +7,6 @@ import re
 from pathlib import Path
 from typing import Any
 
-from pydantic import ValidationError
-
 from fbsu_intelligence.core.config import load_config
 from fbsu_intelligence.core.models import Confidence, Domain, Observation, VerificationStatus
 from fbsu_intelligence.core.workspace import get_repository
@@ -20,7 +18,7 @@ SAFE_FIELDS = {
     "service", "service_name", "tls", "certificate", "issuer", "subject",
     "validity", "location", "asn", "autonomous_system",
 }
-SECRET_KEY = re.compile(r"(password|cookie|token|secret|credential|private|authorization|email)", re.I)
+SECRET_KEY = re.compile(r"(password|cookie|token|secret|credential|private|authorization|email)", re.IGNORECASE)
 IP_PATTERN = re.compile(r"^(?:\d{1,3}\.){3}\d{1,3}$|^[0-9a-fA-F:]{3,}$")
 
 

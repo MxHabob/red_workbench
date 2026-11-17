@@ -19,6 +19,8 @@ from fbsu_intelligence.core.workspace import (
     fbsu_path,
     get_repository,
     initialize_workspace,
+)
+from fbsu_intelligence.core.workspace import (
     status as workspace_status,
 )
 from fbsu_intelligence.integrations.censys_import import import_censys_file
@@ -54,6 +56,9 @@ for group, name in (
     app.add_typer(group, name=name)
 
 console = Console()
+IMPORT_FILE_ARGUMENT = typer.Argument(..., exists=True, readable=True)
+OBSERVATION_STATUS_OPTION = typer.Option(VerificationStatus.OBSERVED)
+OBSERVATION_CONFIDENCE_OPTION = typer.Option(Confidence.LOW)
 CATEGORIES = {
     "domain", "dns_record", "ip_address", "certificate", "technology", "dependency",
     "application", "third_party", "public_metadata", "documented_api",
@@ -130,7 +135,7 @@ def sources():
 
 
 @censys_app.command("import")
-def censys_import(file: Path = typer.Argument(..., exists=True, readable=True)):
+def censys_import(file: Path = IMPORT_FILE_ARGUMENT):
     """Import a local Censys JSON/CSV export using allow-listed fields only."""
     try:
         count = import_censys_file(file)
@@ -236,8 +241,8 @@ def observation_add(
     asset: str = typer.Option(...),
     source: str = typer.Option(...),
     source_reference: str = typer.Option(...),
-    status: VerificationStatus = typer.Option(VerificationStatus.OBSERVED),
-    confidence: Confidence = typer.Option(Confidence.LOW),
+    status: VerificationStatus = OBSERVATION_STATUS_OPTION,
+    confidence: Confidence = OBSERVATION_CONFIDENCE_OPTION,
     evidence_reference: str = "",
 ):
     """Record a source-backed normalized observation; never performs discovery."""

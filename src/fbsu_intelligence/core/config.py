@@ -6,7 +6,6 @@ from typing import Any
 
 import yaml
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CONFIG_ROOT = PROJECT_ROOT / "config"
 
@@ -23,7 +22,7 @@ def load_yaml(path: Path) -> dict[str, Any]:
     except yaml.YAMLError as exc:
         raise ValueError(f"Invalid YAML in {path}: {exc}") from exc
     if not isinstance(value, dict):
-        raise ValueError(f"Expected a YAML mapping in {path}.")
+        raise TypeError(f"Expected a YAML mapping in {path}.")
     return value
 
 

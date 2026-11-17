@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import StrEnum
 from typing import Any
 from urllib.parse import urlparse
@@ -14,7 +14,7 @@ def new_id() -> str:
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 class VerificationStatus(StrEnum):
@@ -92,9 +92,9 @@ class Observation(BaseModel):
     @model_validator(mode="after")
     def validate_timestamps(self) -> Observation:
         try:
-            first = datetime.fromisoformat(self.first_observed_at.replace("Z", "+00:00"))
-            last = datetime.fromisoformat(self.last_observed_at.replace("Z", "+00:00"))
-            collected = datetime.fromisoformat(self.collected_at.replace("Z", "+00:00"))
+            first = datetime.fromisoformat(self.first_observed_at)
+            last = datetime.fromisoformat(self.last_observed_at)
+            collected = datetime.fromisoformat(self.collected_at)
         except ValueError as exc:
             raise ValueError("Observation timestamps must be ISO-8601 values.") from exc
         if any(not stamp.tzinfo for stamp in (first, last, collected)):

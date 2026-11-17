@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from fbsu_intelligence.core.workspace import fbsu_path, get_repository
@@ -14,10 +14,12 @@ def generate_markdown() -> Path:
     lines = [
         "# FBSU Public-Source Asset Intelligence",
         "",
-        f"Generated: {datetime.now(timezone.utc).isoformat()}",
+        f"Generated: {datetime.now(UTC).isoformat()}",
         "",
-        "> This is a local inventory of supplied references and imported observations. "
-        "It is not evidence that any asset is owned, reachable, or authorized for testing.",
+        (
+            "> This is a local inventory of supplied references and imported observations. "
+            "It is not evidence that any asset is owned, reachable, or authorized for testing."
+        ),
         "",
         "## Executive summary",
         "",

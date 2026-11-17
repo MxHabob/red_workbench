@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import shutil
 from pathlib import Path
 from typing import Any
@@ -10,7 +9,6 @@ import yaml
 from fbsu_intelligence.core.config import CONFIG_ROOT, load_config, workspace_root
 from fbsu_intelligence.core.database import Repository
 from fbsu_intelligence.core.models import Domain, PublicMetadataResource
-
 
 DATA_DIRS = (
     "assets", "domains", "dns", "certificates", "technologies", "dependencies",
