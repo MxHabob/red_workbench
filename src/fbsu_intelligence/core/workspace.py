@@ -5,6 +5,8 @@ import shutil
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 from fbsu_intelligence.core.config import CONFIG_ROOT, load_config, workspace_root
 from fbsu_intelligence.core.database import Repository
 from fbsu_intelligence.core.models import Domain, PublicMetadataResource
@@ -39,7 +41,7 @@ def initialize_workspace() -> Path:
         shutil.copy2(CONFIG_ROOT / config_name, root / config_name)
     engagement = load_config("settings.yaml").get("engagement", {})
     (root / "engagement.yaml").write_text(
-        __import__("yaml").safe_dump(engagement, sort_keys=False), encoding="utf-8"
+        yaml.safe_dump(engagement, sort_keys=False), encoding="utf-8"
     )
     repository = Repository(root / "intelligence.sqlite3")
     target_data = load_config("targets.yaml")

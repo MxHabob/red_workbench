@@ -97,10 +97,10 @@ class Observation(BaseModel):
             collected = datetime.fromisoformat(self.collected_at.replace("Z", "+00:00"))
         except ValueError as exc:
             raise ValueError("Observation timestamps must be ISO-8601 values.") from exc
-        if first > last:
-            raise ValueError("first_observed_at cannot be later than last_observed_at.")
         if any(not stamp.tzinfo for stamp in (first, last, collected)):
             raise ValueError("Observation timestamps must include a timezone.")
+        if first > last:
+            raise ValueError("first_observed_at cannot be later than last_observed_at.")
         return self
 
 

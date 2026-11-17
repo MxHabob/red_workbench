@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import ipaddress
 import json
 import re
 from pathlib import Path
@@ -9,7 +10,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from fbsu_intelligence.core.config import load_config
-from fbsu_intelligence.core.models import Confidence, Observation, VerificationStatus, utc_now
+from fbsu_intelligence.core.models import Confidence, Domain, Observation, VerificationStatus
 from fbsu_intelligence.core.workspace import get_repository
 
 MAX_IMPORT_BYTES = 10 * 1024 * 1024
@@ -54,11 +55,17 @@ def _asset_value(record: dict[str, Any]) -> tuple[str, str] | None:
     for key in ("ip", "ip_address"):
         value = lowered.get(key)
         if isinstance(value, str) and IP_PATTERN.fullmatch(value.strip()):
-            return "ip_address", value.strip()
+            try:
+                return "ip_address", str(ipaddress.ip_address(value.strip()))
+            except ValueError:
+                continue
     for key in ("domain", "hostname", "host"):
         value = lowered.get(key)
         if isinstance(value, str) and "." in value and len(value) <= 253:
-            return "domain", value.strip().lower().rstrip(".")
+            try:
+                return "domain", Domain(name=value).name
+            except ValueError:
+                continue
     return None
 
 
