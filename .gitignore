@@ -15,14 +15,4 @@ htmlcov/
 *.log
 Thumbs.db
 .DS_Store
-targets/*/data/*
-!targets/*/data/.gitkeep
-targets/*/reports/*
-!targets/*/reports/.gitkeep
-targets/*/files/*
-!targets/*/files/imports/
-!targets/*/files/evidence/
-targets/*/files/imports/*
-!targets/*/files/imports/.gitkeep
-targets/*/files/evidence/*
-!targets/*/files/evidence/.gitkeep
+
