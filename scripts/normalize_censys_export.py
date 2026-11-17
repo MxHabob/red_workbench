@@ -6,7 +6,7 @@ import hashlib
 import ipaddress
 import json
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -45,7 +45,7 @@ def load_records(path: Path) -> list[dict[str, Any]]:
 
 def normalize_records(records: list[dict[str, Any]], source_reference: str, file_digest: str) -> list[dict]:
     observations = []
-    collected_at = datetime.now(timezone.utc).isoformat()
+    collected_at = datetime.now(UTC).isoformat()
     for record in records:
         lowered = {str(key).strip().lower().replace(" ", "_"): value for key, value in record.items()}
         asset = None
