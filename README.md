@@ -90,7 +90,14 @@ targets/                  one information folder per target
 scripts/                  reusable local-file utilities
 tests/                    tests for the utilities
 pyproject.toml             dependencies and development-tool settings
+.gitattributes             shared line-ending rules
+.editorconfig              shared editor defaults
+.gitignore                 generated/local files and target-data exclusions
+CONTRIBUTING.md            collaboration and pull-request workflow
 ```
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for branch, review, and hosting-service
+recommendations for teams of any size.
 
 Run the tests and focused lint checks with:
 
